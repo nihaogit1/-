@@ -4,7 +4,6 @@ export default function ClassGrade() {
     return (
         <div>
             班级管理
-            shenme
         </div>
     )
 }
