@@ -1,17 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-// import Store from './store/index'
-// import Context from './context/Context'
+import Store from './store/index';
+import Context from  './context/Storecontext';
 ReactDOM.render(
-  <React.StrictMode>
-    {/* <Context.Provider value={Store}> */}
 
+    <Context.Provider value={Store}>
       <App />
-    {/* </Context.Provider> */}
-  </React.StrictMode>,
+    </Context.Provider>,
+
   document.getElementById('root')
 );
 

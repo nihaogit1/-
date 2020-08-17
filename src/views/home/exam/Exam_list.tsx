@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Roll() {
+export default function Exam() {
     return (
         <div>
-            待批班级
+            试卷列表
         </div>
     )
 }

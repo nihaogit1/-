@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Roll() {
+export default function ClassGrade() {
     return (
         <div>
-            待批班级
+            教室管理
         </div>
     )
 }

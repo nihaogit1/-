@@ -1,29 +1,47 @@
 import axios from 'axios'
-
-axios({
-    method: 'post',
-    url: 'http://127.0.0.1:7002',
-    data: {
-      firstName: 'Fred',
-      lastName: 'Flintstone'
+let instance=axios.create({
+  baseURL:"http://127.0.0.1:7002",
+  timeout:3000
+});
+// 添加请求拦截器
+instance.interceptors.request.use(function (config:any) {
+    // 在发送请求之前做些什么
+    let writePath = ['/user/login'];
+    if(!writePath.includes(config.url)){
+        config.headers.authorization =window.sessionStorage.getItem('token')
     }
-  });
-
-  axios.interceptors.request.use(function (config) {
-    // Do something before request is sent
     return config;
   }, function (error) {
-    // Do something with request error
+    // 对请求错误做些什么
     return Promise.reject(error);
   });
- 
-// Add a response interceptor
-axios.interceptors.response.use(function (response) {
-    // Any status code that lie within the range of 2xx cause this function to trigger
-    // Do something with response data
+
+
+  // 添加响应拦截器
+instance.interceptors.response.use(function (response) {
+    // 对响应数据做点什么
+
     return response;
   }, function (error) {
-    // Any status codes that falls outside the range of 2xx cause this function to trigger
-    // Do something with response error
+      switch (error.response.status) {
+          case 401:
+              // window.location.href="/user/login"
+              break;
+          case 500:
+            console.log("服务器有误");
+            break;
+          default:
+              break;
+      }
+    // 对响应错误做点什么
     return Promise.reject(error);
   });
+
+  export default{
+      post(url:string,params?:any){
+          return instance.post(url,params)
+      },
+      get(url:string,params?:any){
+          return instance.get(url,{params})
+      }
+  }

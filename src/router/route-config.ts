@@ -1,16 +1,30 @@
 import Login from '../views/login/Login'; // 登陆接口
 import Home from '../views/home/home';  //  主页接口
+// 试题管理
+import TQ_add from '../views/home/testQuestions/TQ_add'; //  添加试题
+import TQ_classify from '../views/home/testQuestions/TQ_classify' // 试题分类
+import TQ_look from '../views/home/testQuestions/TQ_look' // 查看试题
 
-import Test from '../views/home/testQuestions/TestQuestions'; //  试题管理
-import User from '../views/home/user/User'; // 用户管理
-import Exam from '../views/home/exam/Exam'; // 考试管理
-import ClassG from '../views/home/classAndGrade/ClassGrade'; // 班级管理
-import Roll from '../views/home/roll/Roll'; // 阅卷管理 
+// 用户管理
+import User_add from '../views/home/user/User_add' // 添加用户
+import User_show from '../views/home/user/User_show' // 用户管理
+
+// 考试管理
+import Exam_add from '../views/home/exam/Exam_add'; // 添加考试
+import Exam_list from '../views/home/exam/Exam_list'; // 试卷列表
+
+// 班级管理
+import Class_Grade from '../views/home/classAndGrade/Class_Grade'; // 班级管理
+import Room_Grade from '../views/home/classAndGrade/Room_Grade'; // 教室管理
+import Student_Grade from '../views/home/classAndGrade/Student_Grade'; // 学生管理
+
+// 阅卷管理 
+import Roll from '../views/home/roll/Roll'; // 待批班级
 
 import { Iroute } from '../utils/interface'; // 数据规范
 const routes : Iroute[] = [
     {
-        path:'/login',
+        path:'/user/login',
         component:Login
     },
     {
@@ -18,23 +32,47 @@ const routes : Iroute[] = [
         component:Home,
         children:[
             {
-                path:'/home/test',
-                component:Test
+                path:'/home/testQuestions/TQ_add',
+                component:TQ_add
             },
             {
-                path:'/home/user',
-                component:User
+                path:'/home/testQuestions/TQ_classify',
+                component:TQ_classify
             },
             {
-                path:'/home/exam',
-                component:Exam
+                path:'/home/testQuestions/TQ_look',
+                component:TQ_look
             },
             {
-                path:'/home/classg',
-                component:ClassG
+                path:'/home/user/User_add',
+                component:User_add
             },
             {
-                path:'/home/roll',
+                path:'/home/user/User_show',
+                component:User_show
+            },
+            {
+                path:'/home/exam/Exam_add',
+                component:Exam_add
+            },
+            {
+                path:'/home/exam/Exam_list',
+                component:Exam_list
+            },
+            {
+                path:'/home/classAndGrade/Class_Grade',
+                component:Class_Grade
+            },
+            {
+                path:'/home/classAndGrade/Room_Grade',
+                component:Room_Grade
+            },
+            {
+                path:'/home/classAndGrade/Student_Grade',
+                component:Student_Grade
+            },
+            {
+                path:'/home/roll/Roll',
                 component:Roll
             },
             //  重定向
@@ -47,7 +85,7 @@ const routes : Iroute[] = [
             //  重定向
     {
         path:'/',
-        to:'/home'
+        to:'/user/login'
     }
 ]
 
