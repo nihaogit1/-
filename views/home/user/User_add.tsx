@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Login () {
+export default function User(){
     return (
         <div>
-            登陆页面
+           添加用户
         </div>
     )
 }
