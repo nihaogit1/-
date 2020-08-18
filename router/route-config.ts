@@ -24,7 +24,7 @@ import Roll from '../views/home/roll/Roll'; // 待批班级
 import { Iroute } from '../utils/interface'; // 数据规范
 const routes : Iroute[] = [
     {
-        path:'/login',
+        path:'/user/login',
         component:Login
     },
     {
@@ -64,15 +64,15 @@ const routes : Iroute[] = [
                 component:Class_Grade
             },
             {
-                path:'/home/uclassAndGrade/Room_Grade',
+                path:'/home/classAndGrade/Room_Grade',
                 component:Room_Grade
             },
             {
-                path:'/home/uclassAndGrade/Student_Grade',
+                path:'/home/classAndGrade/Student_Grade',
                 component:Student_Grade
             },
             {
-                path:'home/roll/Roll',
+                path:'/home/roll/Roll',
                 component:Roll
             },
             //  重定向
@@ -85,7 +85,7 @@ const routes : Iroute[] = [
             //  重定向
     {
         path:'/',
-        to:'/home'
+        to:'/user/login'
     }
 ]
 
