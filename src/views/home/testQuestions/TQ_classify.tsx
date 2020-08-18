@@ -9,7 +9,6 @@ export default function TQ_classify() {
     //获取试题类型
     useEffect(()=>{
       exam.getQuestionsAction()
-      exam.getSubjectAction()
       // eslint-disable-next-line react-hooks/exhaustive-deps 
     },[])
     const showModal = () => {
@@ -60,7 +59,7 @@ export default function TQ_classify() {
           >
           <Input placeholder="请输入类型名称"/>
           </Modal> 
-          <Table rowKey={(r) => (r.questions_type_id)} columns={columns} key='questions_type_id' dataSource={exam.questionTypes} />     
+          <Table rowKey={(r) => (r.questions_type_id ) } columns={columns} key='questions_type_id' dataSource={exam.questionTypes} />     
       </Layout.Content>
   </div>)
 }
