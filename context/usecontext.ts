@@ -2,4 +2,4 @@ import {useContext} from "react"
 
 import store from "../context/Storecontext"
 
-export default useContext(store)
+export default (()=>useContext(store))

@@ -1,7 +1,4 @@
-import Grades from './module/addType'
-import User from './module/user'
+import { action, observable } from 'mobx';
+console.log(action, observable)
 
-export default {
-    mirChen: new Grades(),
-    user:new User(),
-}
+export default '123';
