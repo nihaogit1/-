@@ -4,7 +4,8 @@ import { NavLink, useHistory } from "react-router-dom"
 import { Layout, Menu, Breadcrumb } from 'antd';
 import RouterViews from '../../router/router-views';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
-import useStore from '../../context/usecontext'
+// import Homes from './home.module.scss';
+import useStore from  '../../context/usecontext'
 import { useObserver } from 'mobx-react-lite'
 import { Iroute } from '../../utils/interface';
 import Nav from '../../components/nav/Nav'
