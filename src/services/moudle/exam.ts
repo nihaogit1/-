@@ -32,3 +32,39 @@ export let getQuestionList = () => {
 export let getExamList = (params:IGetExam) => {
     return HttpAxios.get('/exam/exam',{params})
 }
+
+
+// 展示用户数据
+export let getConsumerList = ()=>{
+    return HttpAxios.get('/user/user');
+}
+
+// 展示身份数据
+export let getIdentifyList = ()=>{
+    return HttpAxios.get('/user/identity');
+}
+
+// 展示api接口权限数据
+export let getApiAuthority = ()=>{
+    return HttpAxios.get('/user/api_authority');
+}
+
+// 展示视图权限数据
+export let getViewAuthority = ()=>{
+    return HttpAxios.get('/user/view_authority');
+}
+
+// 展示身份和api权限关系
+export let getIdentityApiAuthorityRelation = ()=>{
+    return HttpAxios.get('/user/identity_api_authority_relation');
+}
+
+// 展示身份和视图权限关系
+export let getIdentityViewAuthorityRelation = ()=>{
+    return HttpAxios.get('/user/identity_view_authority_relation');
+}
+
+//获取教室接口
+export let getRoom = () => {
+    return HttpAxios.get('/manger/room')
+}

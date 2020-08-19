@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Roll() {
+export default function TQ_edit() {
     return (
         <div>
-            待批班级
+            试题详情页面
         </div>
     )
 }

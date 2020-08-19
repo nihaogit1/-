@@ -4,6 +4,7 @@ import Home from '../views/home/home';  //  主页接口
 import TQ_add from '../views/home/testQuestions/TQ_add'; //  添加试题
 import TQ_classify from '../views/home/testQuestions/TQ_classify' // 试题分类
 import TQ_look from '../views/home/testQuestions/TQ_look' // 查看试题
+import TQ_edit from '../views/home/testQuestions/TQ_edit'
 
 // 用户管理
 import User_add from '../views/home/user/User_add' // 添加用户
@@ -12,6 +13,7 @@ import User_show from '../views/home/user/User_show' // 用户管理
 // 考试管理
 import Exam_add from '../views/home/exam/Exam_add'; // 添加考试
 import Exam_list from '../views/home/exam/Exam_list'; // 试卷列表
+import Edit from '../views/home/exam/Edit'// 创建试题
 
 // 班级管理
 import Class_Grade from '../views/home/classAndGrade/Class_Grade'; // 班级管理
@@ -24,7 +26,7 @@ import Roll from '../views/home/roll/Roll'; // 待批班级
 import { Iroute } from '../utils/interface'; // 数据规范
 const routes : Iroute[] = [
     {
-        path:'/login',
+        path:'/user/login',
         component:Login
     },
     {
@@ -44,6 +46,10 @@ const routes : Iroute[] = [
                 component:TQ_look
             },
             {
+                path:'/home/testQuestions/TQ_edit',
+                component:TQ_edit
+            },
+            {
                 path:'/home/user/User_add',
                 component:User_add
             },
@@ -56,6 +62,10 @@ const routes : Iroute[] = [
                 component:Exam_add
             },
             {
+                path:'/home/exam/Edit',
+                component:Edit
+            },
+            {
                 path:'/home/exam/Exam_list',
                 component:Exam_list
             },
@@ -64,15 +74,15 @@ const routes : Iroute[] = [
                 component:Class_Grade
             },
             {
-                path:'/home/uclassAndGrade/Room_Grade',
+                path:'/home/classAndGrade/Room_Grade',
                 component:Room_Grade
             },
             {
-                path:'/home/uclassAndGrade/Student_Grade',
+                path:'/home/classAndGrade/Student_Grade',
                 component:Student_Grade
             },
             {
-                path:'home/roll/Roll',
+                path:'/home/roll/Roll',
                 component:Roll
             },
             //  重定向
@@ -85,7 +95,7 @@ const routes : Iroute[] = [
             //  重定向
     {
         path:'/',
-        to:'/home'
+        to:'/user/login'
     }
 ]
 
