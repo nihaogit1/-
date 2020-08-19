@@ -5,4 +5,3 @@ const useStore = () =>{
     return useContext(storeContext)
 }
 export default useStore
-

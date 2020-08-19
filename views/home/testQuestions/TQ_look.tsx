@@ -6,6 +6,8 @@ import {useObserver} from 'mobx-react-lite'
 import { Store } from 'antd/lib/form/interface';
 import { useHistory } from 'react-router-dom'
 import { IGetQuestion,IQuestion } from '../../../utils/interface';
+// import { useHistory } from 'react-router-dom'
+import { IGetQuestion } from '../../../utils/interface';
 const { CheckableTag } = Tag;
 export default function Exam() {
     const selectLayout = {
@@ -23,7 +25,6 @@ export default function Exam() {
         exam.getQuestionListAction()
     },[])
     console.log(exam.questionList)
-       //处理学科选择
        const handleChange = (text:string, checked:boolean)=>{
         if (checked){
             setSelectedTags([text]);
