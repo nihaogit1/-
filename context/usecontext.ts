@@ -1,7 +1,8 @@
 import {useContext} from "react"
 
-import store from "../context/Storecontext"
+import storeContext from "../context/Storecontext"
+const useStore = () =>{
+    return useContext(storeContext)
+}
+export default useStore
 
-console.log("====")
-
-export default (()=>useContext(store))
