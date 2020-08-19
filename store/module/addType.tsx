@@ -1,5 +1,5 @@
 import { action, observable } from 'mobx';
-import { questions, useInfo, QuestionsType, subject, examType } from '../../service/index';
+import { questions, useInfo, QuestionsType, subject, examType } from '../../services/index';
 import { IAddQuestion } from '../../utils/interface'
 class Grades{
     @observable

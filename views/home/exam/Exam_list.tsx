@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Exam() {
+export default function Exam_list() {
     return (
         <div>
-            试卷列表
+            yemian2
         </div>
     )
 }

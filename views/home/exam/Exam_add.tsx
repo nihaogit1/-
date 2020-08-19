@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Exam() {
+export default function Edit() {
     return (
         <div>
-            添加考试
+            页面
         </div>
     )
 }
