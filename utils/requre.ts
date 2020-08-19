@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getToken } from '../utils/index'
+import {getToken} from "./index"
 let instance=axios.create({
   baseURL:"http://127.0.0.1:7002",
   timeout:3000
@@ -9,11 +9,7 @@ instance.interceptors.request.use(function (config:any) {
     // 在发送请求之前做些什么
     let writePath = ['/user/login'];
     if(!writePath.includes(config.url)){
-        let token  = getToken()
-        if(token){
-
-            config.headers['authorization'] = token
-        }
+        config.headers.authorization = getToken()
     }
     return config;
   }, function (error) {
@@ -30,7 +26,7 @@ instance.interceptors.response.use(function (response) {
   }, function (error) {
       switch (error.response.status) {
           case 401:
-              window.location.href="/user/login"
+              // window.location.href="/user/login"
               break;
           case 500:
             console.log("服务器有误");
@@ -41,5 +37,4 @@ instance.interceptors.response.use(function (response) {
     // 对响应错误做点什么
     return Promise.reject(error);
   });
-
-  export default instance
+export default instance

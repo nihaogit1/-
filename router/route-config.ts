@@ -12,6 +12,7 @@ import User_show from '../views/home/user/User_show' // 用户管理
 // 考试管理
 import Exam_add from '../views/home/exam/Exam_add'; // 添加考试
 import Exam_list from '../views/home/exam/Exam_list'; // 试卷列表
+import Edit from '../views/home/exam/Edit'// 创建试题
 
 // 班级管理
 import Class_Grade from '../views/home/classAndGrade/Class_Grade'; // 班级管理
@@ -22,6 +23,7 @@ import Student_Grade from '../views/home/classAndGrade/Student_Grade'; // 学生
 import Roll from '../views/home/roll/Roll'; // 待批班级
 
 import { Iroute } from '../utils/interface'; // 数据规范
+import Examdel from '../views/home/exam/Examdel';
 const routes : Iroute[] = [
     {
         path:'/user/login',
@@ -56,6 +58,14 @@ const routes : Iroute[] = [
                 component:Exam_add
             },
             {
+                path:'/home/exam/Edit',
+                component:Edit
+            },
+            {
+                path:'/home/exam/Examdel',
+                component:Examdel
+            },
+            {
                 path:'/home/exam/Exam_list',
                 component:Exam_list
             },
@@ -78,7 +88,7 @@ const routes : Iroute[] = [
             //  重定向
             {
                 path:'/home',
-                to: '/home/testQuestions/TQ_add'
+                to: '/home/test'
             }
         ]
     },

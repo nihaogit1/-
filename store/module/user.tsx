@@ -1,5 +1,5 @@
 import { action, observable } from 'mobx'
-import { login } from '../../service/index'
+import { login } from '../../services/index'
 import { setToken, removeToken } from '../../utils/index'
 import { useHistory } from 'react-router-dom'
 class User {
