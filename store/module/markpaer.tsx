@@ -1,16 +1,45 @@
 import { observable, action } from 'mobx';
-import { getGrade } from '../../service/index'
+import { getGrade, addRoom, getRoom, removeRoom } from '../../service'
 class Mark {
     @observable
+    //* 获取已经分配教室的班级的接口
     Marklist: any = []
+    Roomlist: any = []
 
+    //*** */ 阅卷管理
+    // 获取已经分配教室的班级的接口
     @action
     async getMark() {
         let result = await getGrade()
-        return result
-        console.log(result.data)
+        this.Marklist = result.data.data
+        console.log('result...', result.data.data)
     }
 
+    //*** */ 班级管理
+
+    // 添加教室接口
+    @action
+    async addRoom(data: any) {
+        let res: any = await addRoom(data)
+        return res
+    }
+
+    // 获取添加的教室-渲染
+    @action
+    async getRoom() {
+        let result: any = await getRoom()
+        if (result.data.code === 1) {
+            console.log('6666')
+            this.Roomlist = result.data.data
+        }
+    }
+
+    // 删除教室
+    @action
+    async removeRoom(data: any) {
+        let res: any = await removeRoom(data)
+        return res
+    }
 
 
 }

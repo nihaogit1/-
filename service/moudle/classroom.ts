@@ -1,6 +1,6 @@
 import axios from "../../utils/requre";
 
-// 获取全部教室接口
+//* 获取全部教室接口
 export let getRoom = () => {
   return axios.get("/manger/room");
 };
@@ -20,14 +20,14 @@ export let roomDelete = (data: any) => {
   return axios.delete("/manger/grade/delete", data);
 };
 
-// 添加教室接口
+//* 添加教室接口
 export let addRoom = (data: any) => {
   return axios.post("/manger/room", data);
 };
 
-// 删除教室接口
+//* 删除教室接口
 export let removeRoom = (data: any) => {
-  return axios.delete("/manger/room/delete", data);
+  return axios.delete("/manger/room/delete", {data});
 };
 
 // 更新班级信息接口

@@ -1,12 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useObserver } from 'mobx-react-lite'
 import room_scss from './share.module.scss'
-import { Table, Button, Modal, Form, Input } from 'antd'
+import { Table, Button, Modal, Form, Input, message } from 'antd'
 import { PlusOutlined } from '@ant-design/icons';
+import usestore from '../../../context/usecontext'
+
 
 const RoomGrade: React.FC = () => {
-
     let [isfale, setIsfale] = useState(false)
+    let { Markall } = usestore()
+
+    useEffect(() => {
+        Markall.getRoom()
+    }, [Markall])
+
+
+    // 删除教室
+    let delRom = (room_id: string) => {
+        Markall.removeRoom({ room_id }).then(res => {
+            console.log(res)
+            Markall.getRoom()
+            message.info(res.data.msg)
+        })
+    }
 
     const columns = [
         {
@@ -18,14 +34,18 @@ const RoomGrade: React.FC = () => {
             dataIndex: 'room_id',
             key: 'room_id',
             render: (room_id: string) => {
-                return <div style={{ color: 'blue' }}>删除</div>
+                return <div style={{ color: 'blue', cursor: 'pointer' }} onClick={() => { delRom(room_id) }}>删除</div>
             }
         },
     ]
 
     let onFinish = (values: any) => {
-        console.log('Success:', values);
-        setIsfale(!isfale)
+        Markall.addRoom(values).then((res) => {
+            console.log(res)
+            Markall.getRoom()
+            message.info(res.data.msg)
+            setIsfale(!isfale)
+        })
     };
 
 
@@ -73,8 +93,7 @@ const RoomGrade: React.FC = () => {
             添加教室
                 </Button>
 
-
-        <Table columns={columns} rowKey="room_id" />
+        <Table dataSource={Markall.Roomlist} columns={columns} rowKey="room_id" />
     </div>)
 }
 export default RoomGrade

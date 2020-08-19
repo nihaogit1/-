@@ -1,5 +1,5 @@
-import {useContext} from "react"
+import { useContext } from "react";
 
-import store from "../context/Storecontext"
-
-export default (()=>useContext(store))
+import store from "../context/Storecontext";
+// 消费/使用
+export default () => useContext(store);

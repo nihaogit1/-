@@ -50,7 +50,7 @@ export default {
     return instance.get(url, { params });
   },
   delete(url: string, params?: any) {
-    return instance.delete(url, { params });
+    return instance.delete(url, params);
   },
   put(url: string, params?: any) {
     return instance.put(url, { params });

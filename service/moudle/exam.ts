@@ -5,7 +5,7 @@ import {
   IAddQuestionType,
   IGetQuestion,
   IGetExam,
-  ISetExam
+  ISetExam,
 } from "../../utils/interface";
 
 // 获取所有的试题类型
@@ -50,11 +50,10 @@ export let getStudentInfo = () => {
 
 // 获取试卷列表接口
 export let getExamList = (params: IGetExam) => {
-    return axios.get('/exam/exam',{params})
+  return axios.get("/exam/exam", { params });
 };
 
-
 //创建试卷接口
-export let setExam = (params:ISetExam) => {
-    return axios.post('/exam/exam',params)
-}
+export let setExam = (params: ISetExam) => {
+  return axios.post("/exam/exam", params);
+};

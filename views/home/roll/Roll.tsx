@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useObserver } from 'mobx-react-lite'
 import { Table } from 'antd'
-import useContext from '../../../context/usecontext'
+import usestore from '../../../context/usecontext'
+
+
 const Roll: React.FC = () => {
-    let {Markall} = useContext()
-    console.log(Markall)
+    let { Markall } = usestore()
+    // 重点
+    useEffect(() => {
+        Markall.getMark()
+    }, [Markall])
+
     const columns = [
         {
             title: '班级名',
@@ -35,7 +41,8 @@ const Roll: React.FC = () => {
     ];
 
     return useObserver(() => <div>
-        <Table columns={columns} rowKey="grade_id" />;
+
+        <Table dataSource={Markall.Marklist} columns={columns} rowKey="grade_id" />;
     </div>)
 }
 export default Roll
