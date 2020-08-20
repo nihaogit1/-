@@ -1,4 +1,3 @@
-
 import React from 'react'
 import Homes from '../../views/home/home.module.scss';
 import useStore from  '../../context/usecontext'
@@ -23,4 +22,4 @@ export default function Nav() {
             </div>
         )
     )
-                    }
+}

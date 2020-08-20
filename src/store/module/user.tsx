@@ -1,4 +1,3 @@
-
 import { action, observable } from 'mobx'
 import { login } from '../../services/index'
 import { setToken, removeToken } from '../../utils/index'
@@ -27,6 +26,4 @@ class User {
 
 
 }
-
-
 export default User;

@@ -4,7 +4,6 @@ import Home from '../views/home/home';  //  主页接口
 import TQ_add from '../views/home/testQuestions/TQ_add'; //  添加试题
 import TQ_classify from '../views/home/testQuestions/TQ_classify' // 试题分类
 import TQ_look from '../views/home/testQuestions/TQ_look' // 查看试题
-import TQ_edit from '../views/home/testQuestions/TQ_edit'
 
 // 用户管理
 import User_add from '../views/home/user/User_add' // 添加用户
@@ -13,7 +12,6 @@ import User_show from '../views/home/user/User_show' // 用户管理
 // 考试管理
 import Exam_add from '../views/home/exam/Exam_add'; // 添加考试
 import Exam_list from '../views/home/exam/Exam_list'; // 试卷列表
-import Edit from '../views/home/exam/Edit'// 创建试题
 
 // 班级管理
 import Class_Grade from '../views/home/classAndGrade/Class_Grade'; // 班级管理
@@ -46,10 +44,6 @@ const routes : Iroute[] = [
                 component:TQ_look
             },
             {
-                path:'/home/testQuestions/TQ_edit',
-                component:TQ_edit
-            },
-            {
                 path:'/home/user/User_add',
                 component:User_add
             },
@@ -60,10 +54,6 @@ const routes : Iroute[] = [
             {
                 path:'/home/exam/Exam_add',
                 component:Exam_add
-            },
-            {
-                path:'/home/exam/Edit',
-                component:Edit
             },
             {
                 path:'/home/exam/Exam_list',
@@ -88,7 +78,7 @@ const routes : Iroute[] = [
             //  重定向
             {
                 path:'/home',
-                to: '/home/test'
+                to: '/home/testQuestions/TQ_add'
             }
         ]
     },

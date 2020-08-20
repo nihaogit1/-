@@ -9,7 +9,6 @@ export default function TQ_classify() {
     //获取试题类型
     useEffect(()=>{
       exam.getQuestionsAction()
-      exam.getRoomListAction()
       // eslint-disable-next-line react-hooks/exhaustive-deps 
     },[])
     const showModal = () => {
