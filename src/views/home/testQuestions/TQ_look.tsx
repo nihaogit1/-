@@ -1,12 +1,11 @@
 import React, {useEffect, Fragment, useState}from 'react'
-import { Tag, Select, Form, Button, List, Layout } from 'antd';
+import { Tag, Select, Form, Button, List} from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import useStore from '../../../context/usecontext'
 import {useObserver} from 'mobx-react-lite'
 import { Store } from 'antd/lib/form/interface';
 import { useHistory } from 'react-router-dom'
-import { IGetQuestion,IQuestion } from '../../../utils/interface';
-import { listenerCount } from 'process';
+import { IGetQuestion } from '../../../utils/interface';
 const { CheckableTag } = Tag;
 export default function Exam() {
     const selectLayout = {
@@ -24,7 +23,6 @@ export default function Exam() {
         exam.getQuestionsAction();
         exam.getQuestionListAction()
     },[exam])
-    console.log(exam.questionList)
        //处理学科选择
        const handleChange = (text:string, checked:boolean)=>{
         if (checked){
@@ -46,8 +44,16 @@ export default function Exam() {
         }
         // exam.getQuetsionAction(params);
     }
-    const handleChangeItem = (item:IQuestion) =>{
-        history.push('/home/testQuestions/TQ_edit',item)
+    const handleChangeItem = (item: any) =>{
+        console.log(history)
+        history.push({
+            pathname:'/home/testQuestions/TQ_edit',
+            state:{...item}
+        })
+        // history.replace('/home/testQuestions/TQ_edit',item)
+        console.log(111);
+        
+       
     }
     return useObserver(()=><Fragment>
          <Form
@@ -102,7 +108,7 @@ export default function Exam() {
         dataSource={exam.questionList}
         renderItem={item => (
           <List.Item
-          actions={[<a key="list-loadmore-edit" href='js' onClick={()=>{handleChangeItem(item)}}>编辑</a>]}
+          actions={[<span onClick={()=>{handleChangeItem(item)}}>编辑</span>]}
           >
             
               <List.Item.Meta
@@ -122,6 +128,7 @@ export default function Exam() {
         </Fragment>
     )
 }
+
 
 
 

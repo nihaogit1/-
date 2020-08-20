@@ -1,6 +1,6 @@
 import { action,observable } from 'mobx';
 import {exam4} from '../../utils/interface'
-import {getquestions} from "../../services/index"
+import {getquestions,getg2dts} from "../../services/index"
 
 class Eidt{
 @observable
@@ -10,12 +10,40 @@ class Eidt{
  @action
  async getquestionsList(){
    let result = await getquestions();
-   console.log(result.data)
    if(result.data){
      this.examdata = result.data.exam;
    }
  }
+ @observable
+exam_id = ""
+subject_id = ""
+@action
+handleChangeItem = (item: any) => {
+
+  this.exam_id=item;
 }
+@action
+handleChangeItem1= (item: any) => {
+  this.subject_id=item;
+}
+ // 获取讲师端试卷详情
+ @observable
+ getg2dtsdata=[]
+ @action
+ async getgetg2dtsAction(props: any){
+   console.log(this.exam_id,this.subject_id)
+   let result = await getg2dts(this.exam_id,this.subject_id);
+   console.log(result,props)
+   if(result.data){
+     this.getg2dtsdata = result.data.data;
+      props.history.push({
+        pathname:"/home/exam/Examdel"
+      })
+   }
+ }
+}
+
+
 
 
 export default {

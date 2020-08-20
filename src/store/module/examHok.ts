@@ -6,11 +6,16 @@ class Examdata{
  examlist: exam1[] = []
  // 创建
  @action
- getexamdataList = async (subject_id: string,exam_id: string,title: string, start_time:number, end_time:number,number?:number)=>{
+ getexamdataList = async ( props:any,subject_id: string,exam_id: string,title: string, start_time:number, end_time:number,number?:number)=>{
    let resule = await getNewexam(subject_id, exam_id, title, start_time, end_time);   
-    if(resule.data){
+     console.log(resule);
+     
+    if(resule.data.code === 1){
         this.examlist = resule.data;
-        window.sessionStorage.setItem('examdata',JSON.stringify(this.examlist))   
+        window.sessionStorage.setItem('examdata',JSON.stringify(this.examlist))  
+        props.history.push({
+            pathname:"/home/exam/Edit"
+        }) 
     }
    
  }

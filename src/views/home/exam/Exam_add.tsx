@@ -6,12 +6,13 @@ import {useObserver} from 'mobx-react-lite'
 const { Option } = Select;
 
 export default function Exam(props: any) {
-    const {Exam} = usecontext()
+    const {Exam,eidt} = usecontext()
     useEffect(()=>{
         Exam.getsubjectType()
         Exam.getgetexamTypeList()
         Exam.getQuestionsTypeList()
-    }, [])
+        eidt.getquestionsList()
+    }, [Exam, eidt])
     // 日期框框
     let start_time: number  = 0;
     let end_time: number  = 0;
@@ -28,10 +29,6 @@ export default function Exam(props: any) {
         let time1 = data.getTime();
         end_time = time1;
     }
-    const currentEditOption = {
-        roleId: '',
-        title: '',
-    };
     let subject_id: string ="";
      const handleSelect = (value:any, option: any) => {
         /* option返回的是option对应的整个对象 */
@@ -42,14 +39,10 @@ export default function Exam(props: any) {
     const handleSelect1 = (value:any, option: any) => {
         /* option返回的是option对应的整个对象 */
         examId = option.key;
-        console.log(option,examId)};
+       };
     const submitdata=()=>{
         let value = (document.querySelector('input') as HTMLInputElement)?.value
-        Exam.getexamdataList(subject_id,examId,value,start_time,end_time);  
-        props.history.push({
-            pathname:"/home/exam/Edit",
-        })
-        
+        Exam.getexamdataList(props,subject_id,examId,value,start_time,end_time);  
     }
     return useObserver(()=>
         <div className={Exams.wrap}>
@@ -111,3 +104,4 @@ export default function Exam(props: any) {
         </div>
     )
 }
+

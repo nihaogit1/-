@@ -2,24 +2,21 @@ import React, { useState, useEffect } from 'react'
 import styles from "./scss/exam.module.scss"
 import { Form, Select, Button, Radio, Table,} from 'antd'
 import usestore from '../../../context/usecontext'
-export default function Exam() {
+export default function Exam(props: any) {
     let [state, setState] = useState('large')
     const { eidt } = usestore()
-    console.log(eidt.examdata);
-
     const handleSizeChange = (e: any) => {
+        
         setState(e.target.value);
     };
     useEffect(() => {
         eidt.getquestionsList()
-    }, [])
-    const handleChangeItem = (item: any) => {
-        console.log(item)
-    }
+    }, [eidt, eidt.examdata])
+
     // 转化时间
     const timestampToTime = (timestamp: number) => {
 
-        var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+        var date = new Date(timestamp * 1);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
 
         let Y = date.getFullYear() + '-';
 
@@ -36,12 +33,18 @@ export default function Exam() {
         return Y + M + D + h + m + s;
 
     }
-    const dataSource = eidt.examdata
     const columns = [
         {
             title: '试卷信息',
             dataIndex: 'title',
             key:1,
+            render:(text: any,record: any)=>{
+                return <>
+            <p>{record.title}</p>
+            <span>开始时间{timestampToTime(Number(record.start_time))}</span>
+            <span>{record.num}作弊0分</span>
+            </>
+            }
           },
           {
             title: '班级',
@@ -59,17 +62,31 @@ export default function Exam() {
             title: '开始时间',
             dataIndex: 'start_time',
             key:4,
+            render:(text: any,record: any)=>{
+                return <>
+            <span>开始时间{timestampToTime(Number(record.start_time))}</span>
+            </>
+            }
           },
           {
             title: '结束时间',
             dataIndex: 'end_time',
-            key:5
-     
+            key:5,
+            render:(text: any,record: any)=>{
+                return <>
+            <span>结束时间{timestampToTime(Number(record.end_time))}</span>
+            </>
+            }
           },
           {
             title: '操作',
-            key:6
-       
+            key:6,
+            dataIndex:"<span>详情</span>",
+            render:()=>{
+                return <>
+                 <span onClick={()=>eidt.getgetg2dtsAction(props)}>详情</span>
+                </>
+            }
           },
     ]
     return (
@@ -79,20 +96,20 @@ export default function Exam() {
             </div>
             <div className={styles.flexbox2}>
                 <Form.Item label="考试类型" className={styles.inpts}>
-                    <Select className={styles.inpts}>
+                    <Select className={styles.inpts} onChange={eidt.handleChangeItem1}>
                         {
                             eidt.examTypedata.map((item: any) => {
-                                return <Select.Option key={item.exam_id} value="demo">{item.exam_name}</Select.Option>
+                                return <Select.Option key={item.exam_id} value={item.exam_id}>{item.exam_name}</Select.Option>
                             })
                         }
 
                     </Select>
                 </Form.Item>
                 <Form.Item label="课程" className={styles.inpts}>
-                    <Select className={styles.inpts}>
+                    <Select className={styles.inpts} onChange={eidt.handleChangeItem}>
                         {
                             eidt.subjectdata.map((item: any) => {
-                                return <Select.Option key={item.subject_id} value="demo">{item.subject_text}</Select.Option>
+                                return <Select.Option key={item.subject_id} value={item.subject_id}>{item.subject_text}</Select.Option>
                             })
                         }
                     </Select>
@@ -111,7 +128,11 @@ export default function Exam() {
                     </div>
                 </nav>
                 <section>
-                {/* <Table dataSource={dataSource} columns={columns} />; */}
+              <Table 
+              columns={columns} 
+              dataSource = {eidt.examdata}
+              rowKey = {(record)=>record.exam_exam_id}
+              />);
                 </section>
             </div>
             <div>
@@ -119,3 +140,4 @@ export default function Exam() {
         </div>
     )
 }
+

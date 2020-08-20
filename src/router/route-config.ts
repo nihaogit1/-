@@ -3,8 +3,8 @@ import Home from '../views/home/home';  //  主页接口
 // 试题管理
 import TQ_add from '../views/home/testQuestions/TQ_add'; //  添加试题
 import TQ_classify from '../views/home/testQuestions/TQ_classify' // 试题分类
-import TQ_look from '../views/home/testQuestions/TQ_look' // 查看试题
-import TQ_edit from '../views/home/testQuestions/TQ_edit'
+import TQ_look from '../views/home/testQuestions/TQ_look'; // 查看试题
+import TQ_edit from '../views/home/testQuestions/TQ_edit';
 
 // 用户管理
 import User_add from '../views/home/user/User_add' // 添加用户
@@ -24,6 +24,7 @@ import Student_Grade from '../views/home/classAndGrade/Student_Grade'; // 学生
 import Roll from '../views/home/roll/Roll'; // 待批班级
 
 import { Iroute } from '../utils/interface'; // 数据规范
+import Examdel from '../views/home/exam/Examdel';
 const routes : Iroute[] = [
     {
         path:'/user/login',
@@ -66,6 +67,10 @@ const routes : Iroute[] = [
                 component:Edit
             },
             {
+                path:'/home/exam/Examdel',
+                component:Examdel
+            },
+            {
                 path:'/home/exam/Exam_list',
                 component:Exam_list
             },
@@ -88,7 +93,7 @@ const routes : Iroute[] = [
             //  重定向
             {
                 path:'/home',
-                to: '/home/test'
+                to: '/home/testQuestions/TQ_add'
             }
         ]
     },

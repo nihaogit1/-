@@ -64,7 +64,3 @@ export let getIdentityViewAuthorityRelation = ()=>{
     return HttpAxios.get('/user/identity_view_authority_relation');
 }
 
-//获取教室接口
-export let getRoom = () => {
-    return HttpAxios.get('/manger/room')
-}

@@ -28,3 +28,10 @@ export let delQuestionsType = (id: string) => {
 export let getquestions = () => {
     return request.get('/exam/exam');
 }
+
+// 获取试卷详情（教师端）
+export let getg2dts = (subject_id?:string,exam_id?:string) => {
+    console.log(subject_id,exam_id);
+    
+    return request.get('/exam/questions/condition',{params:{subject_id,exam_id}});
+}

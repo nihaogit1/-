@@ -1,0 +1,19 @@
+.grade{
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    .but{
+        padding: 0 40px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+}
+
+.student{
+    .form{
+        display: flex;
+        .formitem{
+            margin-right: 30px;
+        }
+    }
+}
