@@ -1,3 +1,4 @@
+
 import { observable, action } from 'mobx';
 import {getDealerList,getexamType,getQuestionsType,getNewexam,getdelQuestionsType} from '../../services/index'
 import {exam1,exam2,exam3} from "../../utils/interface"
@@ -77,4 +78,6 @@ delQuestionsTypeList = []
 
 export default {
     Examdata: new Examdata()
+
+
 }

@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function User(){
+export default function TQ_edit() {
     return (
         <div>
-            用户展示
+            试题详情页面
         </div>
     )
 }

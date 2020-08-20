@@ -1,18 +1,22 @@
 import React, {useEffect, Fragment, useState}from 'react'
-import { Tag, Select, Form, Button, List } from 'antd';
+import { Tag, Select, Form, Button, List, Layout } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import useStore from '../../../context/usecontext'
 import {useObserver} from 'mobx-react-lite'
 import { Store } from 'antd/lib/form/interface';
 import { useHistory } from 'react-router-dom'
 import { IGetQuestion,IQuestion } from '../../../utils/interface';
-// import { useHistory } from 'react-router-dom'
-import { IGetQuestion } from '../../../utils/interface';
+
+
+import { listenerCount } from 'process';
+
+
 const { CheckableTag } = Tag;
 export default function Exam() {
     const selectLayout = {
         labelCol: { offset: 0 },
     };
+    let history = useHistory()
     let {exam} = useStore()
     // 定义选中的学科
     let [selectedTags, setSelectedTags] = useState<string []>([])
@@ -23,8 +27,9 @@ export default function Exam() {
         exam.getSubjectAction();
         exam.getQuestionsAction();
         exam.getQuestionListAction()
-    },[])
+    },[exam])
     console.log(exam.questionList)
+       //处理学科选择
        const handleChange = (text:string, checked:boolean)=>{
         if (checked){
             setSelectedTags([text]);
@@ -43,7 +48,10 @@ export default function Exam() {
         if (values.questions_type_id){
             params.questions_type_id = values.questions_type_id;
         }
-        exam.getQuetsionAction(params);
+        // exam.getQuetsionAction(params);
+    }
+    const handleChangeItem = (item:IQuestion) =>{
+        history.push('/home/testQuestions/TQ_edit',item)
     }
     return useObserver(()=><Fragment>
          <Form
@@ -88,17 +96,36 @@ export default function Exam() {
             </div>
         </Form>
         <section>
-            {
-                JSON.stringify(exam.questionList)
-            }
-        </section>              
+        <List
+        className="demo-loadmore-list"
+        itemLayout="horizontal"
+        style={{
+            padding: 24,
+            marginTop: 20
+        }}
+        dataSource={exam.questionList}
+        renderItem={item => (
+          <List.Item
+          actions={[<a key="list-loadmore-edit" href='js' onClick={()=>{handleChangeItem(item)}}>编辑</a>]}
+          >
+            
+              <List.Item.Meta
+                title={item.title}
+                description={item.user_name+'发布'}
+              />
+              <div>
+                <Tag color="blue">{item.subject_text}</Tag>
+                <Tag color="red">{item.questions_type_text}</Tag>
+                <Tag color="volcano">{item.exam_name}</Tag>
+                </div>
+          </List.Item>
+        )}
+      />
+        </section>            
 
         </Fragment>
     )
 }
-
-
-
 
 
 

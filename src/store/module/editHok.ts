@@ -1,3 +1,4 @@
+
 import { action,observable } from 'mobx';
 import {exam4} from '../../utils/interface'
 import {getquestions,getg2dts} from "../../services/index"
@@ -48,4 +49,5 @@ handleChangeItem1= (item: any) => {
 
 export default {
     eidt: new Eidt()
+
 }
