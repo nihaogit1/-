@@ -17,3 +17,8 @@ export let subject = () => {
 export let examType =() => {
     return request.get('/exam/examType')
 }
+
+//  获取已经分配教室的班级的接口
+export let getgrade = () => {
+    return request.get('/manger/grade')
+}

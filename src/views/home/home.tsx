@@ -87,9 +87,7 @@ export default function Home(props: Iprops) {
 
                     <Breadcrumb style={{ margin: '10px 0', fontSize: '18px', padding:' 20px 0px'
                     }}>
-                        {
-                            console.log(history)
-                        }
+                    
                     <Breadcrumb.Item >{history.location.pathname}</Breadcrumb.Item>
                     
                     </Breadcrumb>

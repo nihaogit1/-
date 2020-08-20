@@ -8,18 +8,18 @@ import usestore from '../../../context/usecontext'
 
 const RoomGrade: React.FC = () => {
     let [isfale, setIsfale] = useState(false)
-    let { Markall } = usestore()
+    let { rolls } = usestore()
 
     useEffect(() => {
-        Markall.getRoom()
-    }, [Markall])
+        rolls.getRoom()
+    }, [rolls])
 
 
     // 删除教室
     let delRom = (room_id: string) => {
-        Markall.removeRoom({ room_id }).then(res => {
+        rolls.removeRoom({ room_id }).then(res => {
             console.log(res)
-            Markall.getRoom()
+            rolls.getRoom()
             message.info(res.data.msg)
         })
     }
@@ -40,9 +40,9 @@ const RoomGrade: React.FC = () => {
     ]
 
     let onFinish = (values: any) => {
-        Markall.addRoom(values).then((res) => {
+        rolls.addRoom(values).then((res) => {
             console.log(res)
-            Markall.getRoom()
+            rolls.getRoom()
             message.info(res.data.msg)
             setIsfale(!isfale)
         })
@@ -93,7 +93,7 @@ const RoomGrade: React.FC = () => {
             添加教室
                 </Button>
 
-        <Table dataSource={Markall.Roomlist} columns={columns} rowKey="room_id" />
+        <Table dataSource={rolls.Roomlist} columns={columns} rowKey="room_id" />
     </div>)
 }
 export default RoomGrade
