@@ -16,17 +16,21 @@ export let addGrade = (data: any) => {
 };
 
 // 删除班级接口
-export let roomDelete = (data: any) => {
-  return axios.delete("/manger/grade/delete", data);
+export let roomDelete = (data: any) => { 
+  console.log(data);
+  return axios.delete("/manger/grade/delete", {data} );
 };
 
 //* 添加教室接口
 export let addRoom = (data: any) => {
+   
   return axios.post("/manger/room", data);
 };
 
 //* 删除教室接口
 export let removeRoom = (data: any) => {
+
+  
   return axios.delete("/manger/room/delete", {data});
 };
 

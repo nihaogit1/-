@@ -37,13 +37,13 @@ class Examdata{
 
 examTypeList: exam2[]=[]
 
- getgetexamTypeList=()=>{
-  getexamType().then(res=>{
-    if(res.data.code === 1){
-       this.examTypeList = res.data.data; 
+async getgetexamTypeList(){
+ const resule = await getexamType()
+    if(resule.data.code === 1){
+       this.examTypeList = resule.data.data; 
        window.sessionStorage.setItem('examType',JSON.stringify(this.examTypeList))        
     }
-})
+
 }
 // 获取所有的试题类型
 @observable

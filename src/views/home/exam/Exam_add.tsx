@@ -29,6 +29,10 @@ export default function Exam(props: any) {
         let time1 = data.getTime();
         end_time = time1;
     }
+    const currentEditOption = {
+        roleId: '',
+        title: '',
+    };
     let subject_id: string ="";
      const handleSelect = (value:any, option: any) => {
         /* option返回的是option对应的整个对象 */
@@ -53,7 +57,9 @@ export default function Exam(props: any) {
                 {/* 输入框 */}
                 <li className={Exams.lis}>
                     <p><i className={Exams.ico}>*</i>试卷名称:</p>
-                    <Input className={Exams.inp} placeholder="" />
+                    <Input
+                    style={{width: '40%'}}
+                     className={Exams.inp} placeholder="" />
                 </li>
                 {/* 下拉框 */}
                 <li className={Exams.lis}>
@@ -61,7 +67,7 @@ export default function Exam(props: any) {
                     <Select
                     labelInValue
                     onChange={handleSelect1}
-                    style={{width: '30%'}}
+                    style={{width: '8%'}}
                     getPopupContainer={(triggerNode: any) => triggerNode.parentNode}
                     >
             
@@ -77,7 +83,7 @@ export default function Exam(props: any) {
                     <Select
                     labelInValue
                     onChange={handleSelect}
-                    style={{width: '70%'}}
+                    style={{width: '8%'}}
                     getPopupContainer={(triggerNode: any) => triggerNode.parentNode}
                     >
                         {Exam.subjectType.map((item,index)=>{
@@ -104,3 +110,79 @@ export default function Exam(props: any) {
         </div>
     )
 }
+
+// import React from 'react'
+// import { useObserver } from 'mobx-react-lite'
+// import { Form, Input, Button, Select, InputNumber, DatePicker } from 'antd'
+
+// const Examadd: React.FC = () => {
+
+//     const onFinish = (values: any) => {
+//         console.log('Success:', values);
+//     }
+
+//     return useObserver(() => <Form
+//         name="basic"
+//         initialValues={{}}
+//         onFinish={onFinish}
+//         style={{ background: "#fff", padding: "50px 25px", borderRadius: "10px", }}
+//     >
+//         <p>试卷名称:</p>
+//         < Form.Item
+//             {...{
+//                 wrapperCol: { span: 11 }
+//             }}
+//             name="title"
+//             rules={[{ required: true, message: 'Please input your username!' }]}
+//         >
+//             <Input />
+//         </Form.Item>
+
+//         <p>请选择考试类型：</p>
+//         <Form.Item name="exam_id"  {...{ wrapperCol: { span: 3 } }} rules={[{ required: true }]}>
+//             <Select
+//             >
+//                 {/* {
+//                     exam.examType.map(item => {
+//                         return <Select.Option key={item.exam_id} value={item.exam_id}>{item.exam_name}</Select.Option>
+//                     })
+//                 } */}
+//             </Select>
+//         </Form.Item>
+
+//         <p>请选择课程：</p>
+//         <Form.Item name="subject_id" {...{ wrapperCol: { span: 3 } }} rules={[{ required: true }]}>
+//             <Select
+//             >
+//                 {/*   {
+//                     exam.subject.map(item => {
+//                         return <Select.Option key={item.subject_id} value={item.subject_id}>{item.subject_text}</Select.Option>
+//                     })
+//                 } */}
+//             </Select>
+//         </Form.Item>
+
+//         <p>设置题量:</p>
+//         <Form.Item name="number" rules={[{ required: true }]}>
+//             <InputNumber min={3} max={10} />
+//         </Form.Item>
+
+//         <p>开始时间:</p>
+//         <Form.Item name="start_time" rules={[{ required: true }]}>
+//             <DatePicker showTime />
+//         </Form.Item>
+
+//         <p>结束时间:</p>
+//         <Form.Item name="end_time" rules={[{ required: true }]}>
+//             <DatePicker showTime />
+//         </Form.Item>
+
+//         <Form.Item >
+//             <Button type="primary" htmlType="submit">
+//                 创建试卷
+//         </Button>
+//         </Form.Item>
+
+//     </Form>)
+// }
+// export default Examadd

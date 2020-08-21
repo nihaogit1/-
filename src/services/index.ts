@@ -9,3 +9,8 @@ export * from './moudle/Examdata';
 export * from './moudle/calssroom';
 
 
+export * from './moudle/teacher';
+
+
+
+
