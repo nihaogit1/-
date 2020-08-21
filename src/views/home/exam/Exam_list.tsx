@@ -4,9 +4,10 @@ import { Form, Select, Button, Radio, Table,} from 'antd'
 import usestore from '../../../context/usecontext'
 export default function Exam(props: any) {
     let [state, setState] = useState('large')
-    const { eidt } = usestore()
+    const { eidt,Exam } = usestore()
     const handleSizeChange = (e: any) => {
-        
+        Exam.getgetexamTypeList()
+        Exam.getsubjectType()
         setState(e.target.value);
     };
     useEffect(() => {
@@ -33,6 +34,7 @@ export default function Exam(props: any) {
         return Y + M + D + h + m + s;
 
     }
+ 
     const columns = [
         {
             title: '试卷信息',
@@ -98,7 +100,7 @@ export default function Exam(props: any) {
                 <Form.Item label="考试类型" className={styles.inpts}>
                     <Select className={styles.inpts} onChange={eidt.handleChangeItem1}>
                         {
-                            eidt.examTypedata.map((item: any) => {
+                            Exam.examTypeList.map((item: any) => {
                                 return <Select.Option key={item.exam_id} value={item.exam_id}>{item.exam_name}</Select.Option>
                             })
                         }
@@ -108,7 +110,7 @@ export default function Exam(props: any) {
                 <Form.Item label="课程" className={styles.inpts}>
                     <Select className={styles.inpts} onChange={eidt.handleChangeItem}>
                         {
-                            eidt.subjectdata.map((item: any) => {
+                            Exam.subjectType.map((item: any) => {
                                 return <Select.Option key={item.subject_id} value={item.subject_id}>{item.subject_text}</Select.Option>
                             })
                         }

@@ -1,13 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useObserver } from 'mobx-react-lite'
 import style from './classadd.module.scss'
 import { Modal, Table, Button, Form, Input, Select } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
+import userStore from '../../../context/usecontext'
 
-const ClassGrade: React.FC = () => {
+const ClassGrade: React.FC = (props:any) => {
+    const { rolls } = userStore()
     let [isfale, setIsfale] = useState(false)
     let [types, setTypes] = useState('')
-
+    // let [state, setState] = useState()
+    useEffect(() => {
+        rolls.getgradeAction()
+        rolls.getRoom()
+        // setState(rolls.markList)
+    }, [rolls.markList,isfale])
+    // console.log(state);
+    
+    // const dataS
+    //  ource = rolls.markList; 
     const columns = [
         {
             title: '班级名',
@@ -38,13 +49,23 @@ const ClassGrade: React.FC = () => {
 
     // 修改
     let pudli = (grade_id: any) => {
+        setIsfale(!isfale)
     }
     // 删除
-    let delLi = (grade_id: any) => {
+    let delLi = (data: any) => {
+        rolls.roomDelete(props,{grade_id:data})
+        
     }
-
     // 表单
     const onFinish = (values: any) => {
+        console.log(values);
+        
+        const data = {
+            grade_name: values.grade_name,
+            room_id: values.room_id,
+            subject_id: values.subject_id
+        }
+        rolls.addGrade(data)
         setIsfale(!isfale)
     }
 
@@ -82,11 +103,11 @@ const ClassGrade: React.FC = () => {
                 <Form.Item className={style.formitem} name="room_id" rules={[{ required: true }]}>
                     <Select
                     >
-                        {/*   {
-                            banji.mangerRoom.map(item => {
+                        {
+                            rolls.Roomlist.map((item: { room_id: string | number; room_text: React.ReactNode; }) => {
                                 return <Select.Option key={item.room_id} value={item.room_id}>{item.room_text}</Select.Option>
                             })
-                        } */}
+                        }
                     </Select>
                 </Form.Item>
 
@@ -94,11 +115,11 @@ const ClassGrade: React.FC = () => {
                 <Form.Item className={style.formitem} name="subject_id" rules={[{ required: true }]}>
                     <Select
                     >
-                        {/*   {
-                            exam.subject.map(item => {
+                        {
+                            rolls.timetable.map((item: { subject_id: string | number; subject_text: React.ReactNode; }) => {
                                 return <Select.Option key={item.subject_id} value={item.subject_id}>{item.subject_text}</Select.Option>
                             })
-                        } */}
+                        }
                     </Select>
                 </Form.Item>
 
@@ -135,7 +156,7 @@ const ClassGrade: React.FC = () => {
         >
             添加班级
         </Button>
-        <Table columns={columns} rowKey="grade_id" />
+        <Table columns={columns} dataSource={rolls.markList} rowKey={(record) => record.grade_id} />
     </div>)
 }
 export default ClassGrade

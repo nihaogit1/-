@@ -45,8 +45,7 @@ export let getNewStudent = () => {
   return axios.get("/manger/student/new");
 };
 
-//* 删除学生接口
-export let removeStudent = (data: string) => {
-  console.log(data)
-  return axios.delete(`/manger/student/${data}`);
+// 删除学生接口
+export let removeStudent = (student_id: string) => {
+  return axios.delete("/manger/student/" + student_id);
 };

@@ -54,3 +54,14 @@
 //     )
 // }
 // export default addapi
+import React from 'react'
+import style from './User.module.scss'
+export default function addapi() {
+    return (
+       
+             <div className={style.box}>
+            
+            </div>
+       
+    )
+}

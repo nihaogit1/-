@@ -1,9 +1,9 @@
-// import { FormContext } from "antd/lib/form/context";
+import { FormContext } from "antd/lib/form/context";
 import React from 'react'
 import { Form, Input, Button, Select } from 'antd';
-// import { FormInstance } from 'antd/lib/form';
+import { FormInstance } from 'antd/lib/form';
 import style from './User.module.scss';
-// import { useObserver } from 'mobx-react-lite'
+import { useObserver } from 'mobx-react-lite'
 
 const { Option } = Select;
 // const addUser: React.FC = () => {

@@ -50,3 +50,13 @@
 //     )
 // }
 // export default addid
+import React from 'react'
+import style from './User.module.scss'
+
+export default function addid() {
+    return (
+        <div className={style.box}>
+            
+        </div>
+    )
+}

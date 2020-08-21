@@ -2,6 +2,17 @@ import React,{ useEffect } from 'react'
 import usestore from '../../../context/usecontext'
 import { useObserver } from 'mobx-react-lite'
 import { Table } from 'antd'
+export default function Roll() {
+    let {rolls} = usestore()
+    useEffect(() => {
+        rolls.getgradeAction()
+    }, [])
+    return useObserver(() => <div>
+
+        <Table dataSource={rolls.markList} columns={columns} rowKey="grade_id" />;
+    </div>)
+}
+
 const columns = [
     {
         title: '班级名',
@@ -29,15 +40,4 @@ const columns = [
             return <span style={{ color: "#00f" }} >批卷</span>
         },
     },
-]
-export default function Roll() {
-    let {rolls} = usestore()
-    useEffect(() => {
-        rolls.getgradeAction()
-    }, [rolls])
-    return useObserver(() => <div>
-
-        <Table dataSource={rolls.markList} columns={columns} rowKey="grade_id" />
-    </div>)
-}
-
+];

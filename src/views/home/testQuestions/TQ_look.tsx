@@ -1,5 +1,5 @@
 import React, {useEffect, Fragment, useState}from 'react'
-import { Tag, Select, Form, Button, List} from 'antd';
+import { Tag, Select, Form, Button, List, Layout } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import useStore from '../../../context/usecontext'
 import {useObserver} from 'mobx-react-lite'
@@ -24,6 +24,7 @@ export default function Exam() {
         exam.getQuestionsAction();
         exam.getQuestionListAction()
     },[exam])
+    console.log(exam.questionList)
        //处理学科选择
        const handleChange = (text:string, checked:boolean)=>{
         if (checked){

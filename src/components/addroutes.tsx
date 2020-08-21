@@ -67,3 +67,13 @@
 //     )
 // }
 // export default addRoures
+import React from 'react'
+import style from './User.module.scss'
+
+export default function addroutes() {
+    return (
+        <div className={style.box}>
+            
+        </div>
+    )
+}

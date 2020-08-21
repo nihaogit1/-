@@ -27,10 +27,15 @@ class MarkPear {
     }
 
     //*** */ 班级管理
-
+    @action
+    async addGrade(data: any) {
+        let res: any = await addGrade(data)
+        return res
+    }
     // 添加教室接口
     @action
     async addRoom(data: any) {
+        
         let res: any = await addRoom(data)
         return res
     }
@@ -65,6 +70,15 @@ class MarkPear {
     }
 
 
+    // 删除班级
+    @action
+    async roomDelete(props: any,data: any) {
+      
+        let res: any = await roomDelete(data) 
+        if(res.code === 1){
+            this.getgradeAction()
+        }
+    }
 }
 
 export default MarkPear
