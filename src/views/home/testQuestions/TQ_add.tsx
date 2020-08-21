@@ -12,7 +12,7 @@ function TQ_add() {
         mirChen.getQuestionsTypeAction()
         mirChen.getsubjectAction()
         mirChen.getexamTypeAction()
-    }, [])
+    }, [mirChen])
     const onFinish = (values: any) => { //  添加试题
         mirChen.Question(values)
     };

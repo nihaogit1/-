@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .grade{
     background: #fff;
     padding: 25px;
@@ -16,4 +17,24 @@
             margin-right: 30px;
         }
     }
+=======
+.grade{
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    .but{
+        padding: 0 40px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+}
+
+.student{
+    .form{
+        display: flex;
+        .formitem{
+            margin-right: 30px;
+        }
+    }
+>>>>>>> 77107653a473225fd6a03345c1a98c335d39c710
 }

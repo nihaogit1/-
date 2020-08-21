@@ -63,6 +63,7 @@ class Exam {
         if (result.data) {
             this.questionList = result.data.data;
         }
+        return result
     }
     // 展示用户数据
     @action
