@@ -5,7 +5,8 @@ import useStore from '../../../context/usecontext'
 import {useObserver} from 'mobx-react-lite'
 import { Store } from 'antd/lib/form/interface';
 import { useHistory } from 'react-router-dom'
-import { IGetQuestion } from '../../../utils/interface';
+import { IGetQuestion,IQuestion } from '../../../utils/interface';
+import { listenerCount } from 'process';
 const { CheckableTag } = Tag;
 export default function Exam() {
     const selectLayout = {
@@ -44,16 +45,8 @@ export default function Exam() {
         }
         // exam.getQuetsionAction(params);
     }
-    const handleChangeItem = (item: any) =>{
-        console.log(history)
-        history.push({
-            pathname:'/home/testQuestions/TQ_edit',
-            state:{...item}
-        })
-        // history.replace('/home/testQuestions/TQ_edit',item)
-        console.log(111);
-        
-       
+    const handleChangeItem = (item:IQuestion) =>{
+        history.push('/home/testQuestions/TQ_edit',item)
     }
     return useObserver(()=><Fragment>
          <Form
@@ -108,7 +101,7 @@ export default function Exam() {
         dataSource={exam.questionList}
         renderItem={item => (
           <List.Item
-          actions={[<span onClick={()=>{handleChangeItem(item)}}>编辑</span>]}
+          actions={[<a key="list-loadmore-edit" href='js' onClick={()=>{handleChangeItem(item)}}>编辑</a>]}
           >
             
               <List.Item.Meta

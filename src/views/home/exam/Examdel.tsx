@@ -21,7 +21,7 @@ const {eidt} = useTore()
               {
                   eidt.getg2dtsdata.map((item: any,index: any)=>{
                       return <div key={index} className={styles.boxwrap}>
-                       <p><span>{item.questions_type_text}</span></p>
+                       <p><span>{item.questions_type_text}</span>></p>
                        <p><span>{item.title}</span></p>
                        <div className={styles.box}>
                        <p><span>{item.questions_answer}</span></p>

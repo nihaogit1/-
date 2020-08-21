@@ -1,5 +1,5 @@
 import { action, observable  } from 'mobx'
-import { getgrade, getGrade, addRoom, getRoom, removeRoom } from '../../services/index'
+import { getgrade, getGrade, addRoom, getRoom, removeRoom, getStudent, removeStudent} from '../../services/index'
 class MarkPear {
     @observable
     markList: any = []
@@ -15,8 +15,9 @@ class MarkPear {
     //* 获取已经分配教室的班级的接口
     Marklist: any = []
     Roomlist: any = []
+    Studentlist: any = []
 
-    //*** */ 阅卷管理
+   //* <-------阅卷管理------->
     // 获取已经分配教室的班级的接口
     @action
     async getMark() {
@@ -39,17 +40,31 @@ class MarkPear {
     async getRoom() {
         let result: any = await getRoom()
         if (result.data.code === 1) {
-            console.log('6666')
             this.Roomlist = result.data.data
         }
     }
-
     // 删除教室
     @action
     async removeRoom(data: any) {
         let res: any = await removeRoom(data)
         return res
     }
+
+
+    //* 学生管理页面
+    @action//获取数据--渲染
+    async getStudent() {
+        let res = await getStudent()
+        this.Studentlist = res.data.data
+    }
+    
+    @action//删除学生
+    async removeStudent(data: any) {
+        let res: any = await removeStudent(data)
+        return res
+    }
+
+
 }
 
 export default MarkPear

@@ -35,7 +35,7 @@ export let upRoom = (data: any) => {
   return axios.put("/manger/grade/update", data);
 };
 
-// 已经分班学生接口
+//**已经分班学生接口 */
 export let getStudent = () => {
   return axios.get("/manger/student");
 };
@@ -45,7 +45,8 @@ export let getNewStudent = () => {
   return axios.get("/manger/student/new");
 };
 
-// 删除学生接口
-export let removeStudent = (student_id: string) => {
-  return axios.delete("/manger/student/" + student_id);
+//* 删除学生接口
+export let removeStudent = (data: string) => {
+  console.log(data)
+  return axios.delete(`/manger/student/${data}`);
 };

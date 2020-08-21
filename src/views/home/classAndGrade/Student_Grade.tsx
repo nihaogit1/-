@@ -1,9 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useObserver } from 'mobx-react-lite'
 import student_scss from './classadd.module.scss'
-import { Table, Form, Input, Button, Select } from 'antd'
+import { Table, Form, Input, Button, Select, message } from 'antd'
+import usestore from '../../../context/usecontext'
+
+//  组件文件中引入中文语言包
+// 修改分页中的 10/page  改为中文后10条/页
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';
+
+
 
 const StudentGrade: React.FC = () => {
+    let { rolls } = usestore()
+
+    useEffect(() => {
+        rolls.getStudent()
+    }, [rolls])
+    // console.log(rolls.Studentlist)
+    // 删除
+    let removeStudent = (student_id: string) => {
+        console.log(student_id)
+        rolls.removeStudent(student_id).then(res => {
+            message.info(res.data.msg)
+        })
+
+    }
+
+
     const columns = [
         {
             title: '姓名',
@@ -32,8 +56,10 @@ const StudentGrade: React.FC = () => {
         },
         {
             title: '操作',
-            render: () => {
-                return <span>删除</span>
+            dataIndex: 'student_id',
+            key: 'student_id',
+            render: (student_id: string) => {
+                return <div style={{ color: 'blue', cursor: 'pointer' }} onClick={() => { removeStudent(student_id) }}>删除</div>
             }
         },
     ]
@@ -42,7 +68,7 @@ const StudentGrade: React.FC = () => {
         console.log('Success:', values);
     };
 
-    return useObserver(() => <div className={student_scss.student}>
+    return useObserver(() => <ConfigProvider locale={zhCN}> <div className={student_scss.student}>
         <Form
             className={student_scss.form}
             name="basic"
@@ -94,7 +120,16 @@ const StudentGrade: React.FC = () => {
                 </Button>
             </Form.Item>
         </Form>
-        <Table columns={columns} rowKey="student_id"></Table>
-    </div>)
+        <Table dataSource={rolls.Studentlist} columns={columns} rowKey="student_id" pagination={{
+            showSizeChanger: true,
+            pageSizeOptions: ['5', '10', '20', '30', '40', '50', '100'],
+            showTotal: detailTotal => `共 ${detailTotal} 条`,
+            showQuickJumper: { goButton: '点我跳转' }
+            // showQuickJumper: { goButton: <a>&emsp;点我跳转</a> }
+
+        }}></Table>
+        {/* 取消分页功能 */}
+        {/* pagination={false} */}
+    </div></ConfigProvider>)
 }
 export default StudentGrade

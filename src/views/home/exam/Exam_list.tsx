@@ -82,9 +82,9 @@ export default function Exam(props: any) {
             title: '操作',
             key:6,
             dataIndex:"<span>详情</span>",
-            render:()=>{
+            render:(text: any,record: any)=>{
                 return <>
-                 <span onClick={()=>eidt.getgetg2dtsAction(props)}>详情</span>
+                 <a onClick={()=>eidt.getgetg2dtsAction(props)}>详情</a>
                 </>
             }
           },

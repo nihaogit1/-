@@ -100,7 +100,7 @@ const ShowConsumer: React.FC = ()=>{
     useEffect(()=>{
         // consumer.getConsumerListAction();
         exam[tabs[active].action]()
-    }, [active, exam]);
+    }, [active]);
 
     function callback(active: string){
         setActive(Number(active));
