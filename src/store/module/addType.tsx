@@ -1,5 +1,5 @@
 import { action, observable } from 'mobx';
-import { questions, useInfo, QuestionsType, subject, examType } from '../../services/index';
+import { questions, useInfo, QuestionsType, subject, examType ,getstudent} from '../../services/index';
 import { IAddQuestion } from '../../utils/interface'
 class Grades{
     @observable
@@ -63,6 +63,17 @@ class Grades{
     async Question(params :IAddQuestion) {
      let result = await questions({...params,user_id:this.userInfo.user_id})
      console.log(result,'questions...')
+    }
+    @observable
+    studentarr:any =[]
+    @action
+    async getstudentAction(){
+      let result = await getstudent();
+      if(result.data){
+
+        this.studentarr = result.data.exam
+      }
+      
     }
 
  

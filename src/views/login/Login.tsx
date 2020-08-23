@@ -10,17 +10,14 @@ export default function Login() {
         let history = useHistory();
         const onFinish = async (values: any) => {
             let result = await user.login(values.username,values.password)
-            console.log(result.data)
             if (result){
                 let qs:{[key:string]:string} = {};
-                console.log(history.location.search)
                 history.location.search.slice(1).split('&').forEach(item=>{
                 
                     let arrs = item.split('=');
                     qs[arrs[0]] = arrs[1];
                 });
                 history.replace(qs.redirect? qs.redirect: '/home');
-                console.log(history)
             }
         }
    
@@ -30,7 +27,7 @@ export default function Login() {
                 <Form
                     name="normal_login"
                     className={Logins.login_form}
-                    initialValues={{ remember: true }}
+                    initialValues={{ username:'chenmanjie', password:'Chenmanjie123!', remember: true }}
                     onFinish={onFinish}
                 >
                     <Form.Item

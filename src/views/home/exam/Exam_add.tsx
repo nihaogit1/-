@@ -8,10 +8,13 @@ const { Option } = Select;
 export default function Exam(props: any) {
     const {Exam,eidt} = usecontext()
     useEffect(()=>{
-        Exam.getsubjectType()
-        Exam.getgetexamTypeList()
-        Exam.getQuestionsTypeList()
-        eidt.getquestionsList()
+        // if(!Exam.examTypeList.length && !Exam.examlist.length) {
+
+            Exam.getsubjectType()
+            Exam.getgetexamTypeList()
+            Exam.getQuestionsTypeList()
+            eidt.getquestionsList()
+        // }
     }, [])
     // 日期框框
     let start_time: number  = 0;

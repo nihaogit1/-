@@ -1,6 +1,6 @@
 import { action, observable } from 'mobx';
-import { getRoom,getIdentityViewAuthorityRelation,getIdentityApiAuthorityRelation,getViewAuthority,getApiAuthority,getExamType,getIdentifyList,getQuestionsType, getSubjectType, getQuestionList, getConsumerList} from '../../services/index'
-import { IQuestionType, ISubject, IExamType ,IQuestion} from '../../utils/interface';
+import { getRoom, getIdentityViewAuthorityRelation, getIdentityApiAuthorityRelation, getViewAuthority, getApiAuthority, getExamType, getIdentifyList, getQuestionsType, getSubjectType, getQuestionList, getConsumerList, gettQuestionsType } from '../../services/index'
+import { IQuestionType, ISubject, IExamType, IQuestion } from '../../utils/interface';
 
 class Exam {
     [key: string]: any
@@ -25,7 +25,7 @@ class Exam {
     @observable
     identityViewAuthorityRelation = [];
     @observable
-    allRoomList  = []
+    allRoomList = []
 
     @action
     // 获取考试类型
@@ -66,69 +66,80 @@ class Exam {
     }
     // 展示用户数据
     @action
-    async getConsumerListAction(){
+    async getConsumerListAction() {
         let result = await getConsumerList();
-        if (result.data){
+        if (result.data) {
             this.consumerList = result.data.data;
         }
-        
+
     }
     // 展示身份数据
     @action
-    async getIdentifyListAction(){
+    async getIdentifyListAction() {
         let result = await getIdentifyList();
-        if (result.data){
+        if (result.data) {
             this.identifyList = result.data.data;
         }
-       
+
     }
     // 展示api接口权限数据
     @action
-    async getApiAuthorityAction(){
+    async getApiAuthorityAction() {
         let result = await getApiAuthority();
-        if (result.data){
+        if (result.data) {
             this.apiAuthorityList = result.data.data;
         }
-        
+
     }
-   // 展示视图权限数据
+    // 展示视图权限数据
     @action
-    async getViewAuthorityAction(){
+    async getViewAuthorityAction() {
         let result = await getViewAuthority();
-        if (result.data){
+        if (result.data) {
             this.viewAuthorityList = result.data.data;
         }
-        
+
     }
     // 展示身份和api权限关系
     @action
-    async getIdentityApiAuthorityRelationAction(){
+    async getIdentityApiAuthorityRelationAction() {
         let result = await getIdentityApiAuthorityRelation();
-        if (result.data){
+        if (result.data) {
             this.identityApiAuthorityRelation = result.data.data;
         }
-        
+
     }
     // 展示身份和视图权限关系
     @action
-    async getIdentityViewAuthorityRelationAction(){
+    async getIdentityViewAuthorityRelationAction() {
         let result = await getIdentityViewAuthorityRelation();
-        if (result.data){
+        if (result.data) {
             this.identityViewAuthorityRelation = result.data.data;
         }
     }
 
     // 获取教室
-        //获取教室接口
-        @action
-        async getRoomListAction () {
-            let result:any = await getRoom();
-           
-            if(result.data){
-                this.allRoomList = result.data.data
-            }
-            console.log( this.allRoomList)
-            return result
+    //获取教室接口
+    @action
+    async getRoomListAction() {
+        let result: any = await getRoom();
+
+        if (result.data) {
+            this.allRoomList = result.data.data
         }
+        console.log(this.allRoomList)
+        return result
+    }
+    // 添加试题类型
+    @action
+    async getinsertQuestionsTypeAction(text: string, sort: string) {
+        let result = await gettQuestionsType(text, sort)
+        if (result.data.code === 1) {
+            this.getQuestionsAction()
+
+        }
+
+    }
 }
 export default Exam
+

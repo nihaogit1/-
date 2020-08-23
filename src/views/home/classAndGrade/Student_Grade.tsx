@@ -1,33 +1,30 @@
 import React, { useEffect } from 'react'
-import { useObserver } from 'mobx-react-lite'
 import student_scss from './classadd.module.scss'
-import { Table, Form, Input, Button, Select, message } from 'antd'
-import usestore from '../../../context/usecontext'
-
-//  组件文件中引入中文语言包
-// 修改分页中的 10/page  改为中文后10条/页
-import { ConfigProvider } from 'antd';
+import { Table, Form, Input, Button, Select, message, ConfigProvider } from 'antd'
 import zhCN from 'antd/es/locale/zh_CN';
-
-
-
-const StudentGrade: React.FC = () => {
+import usestore from '../../../context/usecontext'
+import { useObserver } from 'mobx-react-lite'
+export default function StudentGrade() {
     let { rolls } = usestore()
-
     useEffect(() => {
-        rolls.getStudent()
-    }, [rolls])
-    // console.log(rolls.Studentlist)
+        if (!rolls.Studentlist.length) {
+
+            rolls.getStudentlistAction()
+            rolls.getMangerRoom()
+            rolls.getgrade()
+        }
+
+    }, [])
+    // 删除
     // 删除
     let removeStudent = (student_id: string) => {
-        console.log(student_id)
-        rolls.removeStudent(student_id).then(res => {
+        rolls.removestudent(student_id).then(res => {
+            // 轻提示
             message.info(res.data.msg)
+            // 重绘页面数据
+            rolls.getStudent()
         })
-
     }
-
-
     const columns = [
         {
             title: '姓名',
@@ -63,73 +60,69 @@ const StudentGrade: React.FC = () => {
             }
         },
     ]
-
     const onFinish = (values: any) => {
         console.log('Success:', values);
     };
-
-    return useObserver(() => <ConfigProvider locale={zhCN}> <div className={student_scss.student}>
-        <Form
-            className={student_scss.form}
-            name="basic"
-            initialValues={{}}
-            onFinish={onFinish}
-        >
-            <Form.Item
-                className={student_scss.formitem}
-                name="username"
-                rules={[{ required: true, message: 'Please input your username!' }]}
-            >
-                <Input placeholder="请输入学生姓名" />
-            </Form.Item>
-
-
-            <Form.Item className={student_scss.formitem} name="room_id" rules={[{ required: true }]}>
-                <Select
-                    style={{ width: "150px" }}
+    return useObserver(() =>
+        <div className={student_scss.student}>
+            <ConfigProvider locale={zhCN}>
+                <Form
+                    className={student_scss.form}
+                    name="basic"
+                    initialValues={{}}
+                    onFinish={onFinish}
                 >
-                    {/*    {
-                        banji.mangerRoom.map(item => {
-                            return <Select.Option key={item.room_id} value={item.room_id}>{item.room_text}</Select.Option>
-                        })
-                    } */}
-                </Select>
-            </Form.Item>
+                    <Form.Item
+                        className={student_scss.formitem}
+                        name="username"
+                        rules={[{ required: true, message: 'Please input your username!' }]}
+                    >
+                        <Input placeholder="请输入学生姓名" />
+                    </Form.Item>
+                    <Form.Item className={student_scss.formitem} name="room_id" rules={[{ required: true }]}>
+                        <Select
+                            style={{ width: "150px" }}
+                            placeholder="请选择教室号"
+                        >
+                            {
+                                rolls.mangerRoom.map(item => {
+                                    return <Select.Option key={item.room_id} value={item.room_id}>{item.room_text}</Select.Option>
+                                })
+                            }
+                        </Select>
 
-
-            <Form.Item className={student_scss.formitem} name="questions_type_id" rules={[{ required: true }]}>
-                <Select
-                    style={{ width: "150px" }}
-                >
-                    {/*    {
-                        paper.grade.map(item => {
-                            return <Select.Option key={item.room_id} value={item.room_id}>{item.grade_name}</Select.Option>
-                        })
-                    } */}
-                </Select>
-            </Form.Item>
-
-
-            <Form.Item className={student_scss.formitem} >
-                <Button className={student_scss.formitem} type="primary" htmlType="submit">
-                    搜索
+                    </Form.Item>
+                    <Form.Item className={student_scss.formitem} name="questions_type_id" rules={[{ required: true }]}>
+                        <Select
+                            style={{ width: "150px" }}
+                            placeholder="班级名"
+                        >
+                            {
+                                rolls.grade.map(item => {
+                                    return <Select.Option key={item.room_id} value={item.room_id}>{item.grade_name}</Select.Option>
+                                })
+                            }
+                        </Select>
+                    </Form.Item>
+                    <Form.Item className={student_scss.formitem} >
+                        <Button className={student_scss.formitem} type="primary" htmlType="submit">
+                            搜索
                 </Button>
 
-                <Button type="primary">
-                    重置
+                        <Button type="primary">
+                            重置
                 </Button>
-            </Form.Item>
-        </Form>
-        <Table dataSource={rolls.Studentlist} columns={columns} rowKey="student_id" pagination={{
-            showSizeChanger: true,
-            pageSizeOptions: ['5', '10', '20', '30', '40', '50', '100'],
-            showTotal: detailTotal => `共 ${detailTotal} 条`,
-            showQuickJumper: { goButton: '点我跳转' }
-            // showQuickJumper: { goButton: <a>&emsp;点我跳转</a> }
-
-        }}></Table>
-        {/* 取消分页功能 */}
-        {/* pagination={false} */}
-    </div></ConfigProvider>)
+                    </Form.Item>
+                </Form>
+                <Table
+                    dataSource={rolls.Studentlist}
+                    columns={columns} rowKey="student_id" pagination={{
+                        showSizeChanger: true,
+                        pageSizeOptions: ['5', '10', '20', '30', '40', '50', '100'],
+                        showTotal: detailTotal => `共 ${detailTotal} 条`,
+                        showQuickJumper: { goButton: '点我跳转' }
+                    }}></Table>
+            </ConfigProvider>
+        </div>
+    )
 }
-export default StudentGrade

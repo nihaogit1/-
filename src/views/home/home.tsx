@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import 'antd/dist/antd.css';
-import { NavLink, useHistory } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { Layout, Menu, Breadcrumb } from 'antd';
 import RouterViews from '../../router/router-views';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
@@ -16,7 +16,7 @@ interface Iprops {
 }
 export default function Home(props: Iprops) {
     let { mirChen } = useStore()
-    let history = useHistory()
+    // let history = useHistory()
     useEffect(() => {
         mirChen.useInfo()
 
@@ -87,10 +87,8 @@ export default function Home(props: Iprops) {
 
                     <Breadcrumb style={{ margin: '10px 0', fontSize: '18px', padding:' 20px 0px'
                     }}>
-                        {
-                            // console.log(history)
-                        }
-                    <Breadcrumb.Item >{history.location.pathname}</Breadcrumb.Item>
+                    
+                    {/* <Breadcrumb.Item >{history.location.pathname}</Breadcrumb.Item> */}
                     
                     </Breadcrumb>
                     <Content

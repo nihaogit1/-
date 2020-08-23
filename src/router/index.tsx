@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
         <BrowserRouter>
-            <RouterViews routes = {RouteConfig}></RouterViews>
+            <RouterViews routes = {RouteConfig.routes}></RouterViews>
         </BrowserRouter>
     </div>
   );

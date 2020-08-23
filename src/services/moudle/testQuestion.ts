@@ -22,3 +22,11 @@ export let examType =() => {
 export let getgrade = () => {
     return request.get('/manger/grade')
 }
+// 获取学生试卷列表
+export let getstudent = () => {
+    return request.get('/exam/student')
+}
+// 添加试题类型
+export let gettQuestionsType = (text: string,sort: string) => {
+    return request.get('/exam/insertQuestionsType',{params:{text,sort}})
+}

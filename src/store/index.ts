@@ -8,8 +8,10 @@ export default {
     mirChen: new Grades(),
     exam: new Classify(),
     user:new User(),
+    rolls: new MarkPear(),
     Exam: exam.Examdata,
     eidt:eidt.eidt,
-    rolls: new MarkPear(),
+   
+
 }
 
