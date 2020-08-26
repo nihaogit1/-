@@ -5,20 +5,18 @@ import { Modal, Table, Button, Form, Input, Select } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import userStore from '../../../context/usecontext'
 
-const ClassGrade: React.FC = (props:any) => {
-    const { rolls } = userStore()
+const ClassGrade: React.FC = (props: any) => {
+    const { rolls, Exam } = userStore()
     let [isfale, setIsfale] = useState(false)
     let [types, setTypes] = useState('')
     // let [state, setState] = useState()
     useEffect(() => {
-        rolls.getgradeAction()
         rolls.getRoom()
+        rolls.getgradeAction()
+        Exam.getsubjectType()
         // setState(rolls.markList)
-    }, [rolls.markList,isfale])
-    // console.log(state);
-    
-    // const dataS
-    //  ource = rolls.markList; 
+    }, [isfale])
+
     const columns = [
         {
             title: '班级名',
@@ -53,13 +51,13 @@ const ClassGrade: React.FC = (props:any) => {
     }
     // 删除
     let delLi = (data: any) => {
-        rolls.roomDelete(props,{grade_id:data})
-        
+        rolls.roomDelete(props, { grade_id: data })
+
     }
     // 表单
     const onFinish = (values: any) => {
         console.log(values);
-        
+
         const data = {
             grade_name: values.grade_name,
             room_id: values.room_id,
@@ -68,9 +66,6 @@ const ClassGrade: React.FC = (props:any) => {
         rolls.addGrade(data)
         setIsfale(!isfale)
     }
-
-
-
     return useObserver(() => <div className={style.grade}>
         <Modal
             title='添加班级'
@@ -117,7 +112,7 @@ const ClassGrade: React.FC = (props:any) => {
                     <Select
                     >
                         {
-                            rolls.timetable.map((item: { subject_id: string | number; subject_text: React.ReactNode; }) => {
+                            Exam.subjectType.map((item: { subject_id: string | number; subject_text: React.ReactNode; }) => {
                                 return <Select.Option key={item.subject_id} value={item.subject_id}>{item.subject_text}</Select.Option>
                             })
                         }
@@ -130,20 +125,14 @@ const ClassGrade: React.FC = (props:any) => {
                         onClick={() => setIsfale(!isfale)}
                         style={{ marginRight: "20px" }} >
                         取消
-                    </Button>
+            </Button>
                     <Button type="primary" htmlType="submit">
                         提交
-                    </Button>
+            </Button>
                 </Form.Item>
 
             </Form>
         </Modal>
-
-
-
-
-
-
         <Button
             className={style.but}
             type="primary"
@@ -156,7 +145,7 @@ const ClassGrade: React.FC = (props:any) => {
             }}
         >
             添加班级
-        </Button>
+</Button>
         <Table columns={columns} dataSource={rolls.markList} rowKey={(record) => record.grade_id} />
     </div>)
 }

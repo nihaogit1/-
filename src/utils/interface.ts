@@ -57,11 +57,30 @@ export interface IGetExam {
     pageSize?:number
 }
 
-export interface Iroute {
+export interface IMenuItem{
+    
+    meta?: {
+        icon: any,
+        title: string,
+       
+    },
+    children: Array<{
+        path: string,
+        component?: any,
+        meta: {
+            title: string,
+            show: boolean,
+           
+        }
+    }>
+}
+
+export interface IRouterItem{
     path: string,
     component?: any,
-    children?: Iroute[],
-    to?: string
+    children?: IRouterItem[],
+    to?: string,
+    
 }
 
 export interface IuserInfo {

@@ -1,5 +1,3 @@
-import React from 'react'
-
 import {
     AppstoreOutlined,
     MenuFoldOutlined,
@@ -10,6 +8,7 @@ import {
 import TQ_add from '../views/home/testQuestions/TQ_add';
 import TQ_classify from '../views/home/testQuestions/TQ_classify';
 import TQ_look from '../views/home/testQuestions/TQ_look';
+import TQ_edit from '../views/home/testQuestions/TQ_edit';
 
 // 用户管理
 import User_add from '../views/home/user/User_add' // 添加用户
@@ -19,6 +18,8 @@ import User_shows from '../views/home/user/User_show' // 用户管理
 import Exam_add from '../views/home/exam/Exam_add'; // 添加考试
 import Exam_list from '../views/home/exam/Exam_list'; // 试卷列表
 import Edit from '../views/home/exam/Edit'// 创建试题
+import Examdel from '../views/home/exam/Examdel'// 详情
+
 
 // 班级管理
 import Class_Grade from '../views/home/classAndGrade/Class_Grade'; // 班级管理
@@ -27,29 +28,33 @@ import Student_Grade from '../views/home/classAndGrade/Student_Grade'; // 学生
 
 // 阅卷管理 
 import Roll from '../views/home/roll/Roll'; // 待批班级
+import Rolldetail from '../views/home/roll/rolldetail/Rolldetail';//  待批班级详情
+import { IMenuItem } from '../utils/interface';
 
 const menus = [{
     meta: { icon: MenuFoldOutlined, title: '试题管理' },
     children: [{
         path:'/home/testQuestions/TQ_add',
-        component:TQ_add,
+        component: TQ_add,
         meta: { title: '添加试题' } 
     },
     {
         path:'/home/testQuestions/TQ_classify',
-        component:TQ_classify,
+        component: TQ_classify,
         meta: { title: '试题分类' } 
     },
     {
         path:'/home/testQuestions/TQ_look',
-        component:TQ_look,
+        component: TQ_look,
         meta: { title: '查看试题' }
     },
     {
-        // path:'/main/editquestion',
-        // component:EditQuestionPage,
-        // meta: {show:false, title: '编辑试题' }
-    }]
+        path:'/home/testQuestions/TQ_edit',
+        component: TQ_edit,
+        meta: {title: '查看试题详情'}
+    },
+  
+]
 }, {
     meta: { icon: PieChartOutlined, title: '用户管理' },
     children: [{
@@ -77,6 +82,10 @@ const menus = [{
         path:'/home/exam/Edit',
         component:Edit,
         meta: { title: '试卷详情', show:false }
+    },{
+        path: '/home/exam/Examdel',
+        component:Examdel,
+        meta: {title:'详情2'}
     }]
 }, {
     meta: { icon: MailOutlined, title: '班级管理' },
@@ -101,7 +110,12 @@ const menus = [{
         path:'/home/roll/Roll',
         component:Roll,
         meta: { title: '待批试卷' }
+    },
+    {
+        path:'/home/roll/rolldetail/Rolldetail',
+        component:Rolldetail,
+        meta: {title: '待批详情'}
     }]
 }];
 
-export default menus
+export default menus as IMenuItem[]

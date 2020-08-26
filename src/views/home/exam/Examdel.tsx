@@ -1,7 +1,7 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 import useTore from "../../../context/usecontext"
 import {useObserver} from "mobx-react-lite"
-import Button from 'antd/lib/button'
+// import Button from 'antd/lib/button'
 import styles from "./scss/exam.module.scss"
 export default function Examdel(props: any) {
 const {eidt} = useTore()

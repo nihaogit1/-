@@ -11,8 +11,11 @@ const RoomGrade: React.FC = () => {
     let { rolls } = usestore()
 
     useEffect(() => {
-        rolls.getRoom()
-    }, [rolls])
+        if(!rolls.Roomlist.length) {
+
+            rolls.getRoom()
+        }
+    }, [])
 
 
     // 删除教室
@@ -41,7 +44,6 @@ const RoomGrade: React.FC = () => {
 
     let onFinish = (values: any) => {
         rolls.addRoom(values).then((res) => {
-            console.log(res)
             rolls.getRoom()
             message.info(res.data.msg)
             setIsfale(!isfale)

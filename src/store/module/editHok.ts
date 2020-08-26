@@ -31,9 +31,7 @@ handleChangeItem1= (item: any) => {
  getg2dtsdata=[]
  @action
  async getgetg2dtsAction(props: any){
-   console.log(this.exam_id,this.subject_id)
    let result = await getg2dts(this.exam_id,this.subject_id);
-   console.log(result,props)
    if(result.data){
      this.getg2dtsdata = result.data.data;
       props.history.push({

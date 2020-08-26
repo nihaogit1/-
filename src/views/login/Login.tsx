@@ -5,27 +5,26 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router-dom';
 import usecontext from '../../context/usecontext';
 import { useObserver } from 'mobx-react-lite'
+import ParticlesBg from 'particles-bg'
 export default function Login() {
         let { user } = usecontext()
         let history = useHistory();
         const onFinish = async (values: any) => {
             let result = await user.login(values.username,values.password)
-            console.log(result.data)
             if (result){
                 let qs:{[key:string]:string} = {};
-                console.log(history.location.search)
                 history.location.search.slice(1).split('&').forEach(item=>{
                 
                     let arrs = item.split('=');
                     qs[arrs[0]] = arrs[1];
                 });
                 history.replace(qs.redirect? qs.redirect: '/home');
-                console.log(history)
             }
         }
    
     return useObserver(()=>
         <div className={Logins.login}>
+         {/* <ParticlesBg num={400} type="tadpole" bg={true} /> */}
             <div className={Logins.tab}>
                 <Form
                     name="normal_login"

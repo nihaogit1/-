@@ -8,10 +8,13 @@ const { Option } = Select;
 export default function Exam(props: any) {
     const {Exam,eidt} = usecontext()
     useEffect(()=>{
-        Exam.getsubjectType()
-        Exam.getgetexamTypeList()
-        Exam.getQuestionsTypeList()
-        eidt.getquestionsList()
+        // if(!Exam.examTypeList.length && !Exam.examlist.length) {
+
+            Exam.getsubjectType()
+            Exam.getgetexamTypeList()
+            Exam.getQuestionsTypeList()
+            eidt.getquestionsList()
+        // }
     }, [])
     // 日期框框
     let start_time: number  = 0;
@@ -57,9 +60,7 @@ export default function Exam(props: any) {
                 {/* 输入框 */}
                 <li className={Exams.lis}>
                     <p><i className={Exams.ico}>*</i>试卷名称:</p>
-                    <Input
-                    style={{width: '40%'}}
-                     className={Exams.inp} placeholder="" />
+                    <Input className={Exams.inp} placeholder="" />
                 </li>
                 {/* 下拉框 */}
                 <li className={Exams.lis}>
@@ -67,7 +68,7 @@ export default function Exam(props: any) {
                     <Select
                     labelInValue
                     onChange={handleSelect1}
-                    style={{width: '8%'}}
+                    style={{width: '30%'}}
                     getPopupContainer={(triggerNode: any) => triggerNode.parentNode}
                     >
             
@@ -83,7 +84,7 @@ export default function Exam(props: any) {
                     <Select
                     labelInValue
                     onChange={handleSelect}
-                    style={{width: '8%'}}
+                    style={{width: '70%'}}
                     getPopupContainer={(triggerNode: any) => triggerNode.parentNode}
                     >
                         {Exam.subjectType.map((item,index)=>{
